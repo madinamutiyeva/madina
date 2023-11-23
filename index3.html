@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #app {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: rgb(219, 75, 219);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: plum;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <h2>Event Handling and Two-Way Binding</h2>
+
+  <input v-model="username" placeholder="Enter your username">
+
+  <p v-if="username !== ''">Hello, {{ username }}!</p>
+
+  <button @click="resetUsername">Reset Username</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    username: ''
+  },
+  methods: {
+    resetUsername() {
+      this.username = 'Guest';
+    }
+  }
+});
+</script>
+
+</body>
+</html>
