@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js List Rendering</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #app {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f8f8f8;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      background-color: #e44d26;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d33b1d;
+    }
+
+    .add-button {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .add-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <h2>List Rendering</h2>
+
+  <ul>
+    <li v-for="(item, index) in items" :key="index">
+      {{ item }}
+      <button @click="removeItem(index)">Удалить</button>
+    </li>
+  </ul>
+
+  <button class="add-button" @click="addItem">добавить</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    items: ['апельсин', 'банан', 'яблоко', 'картошка']
+  },
+  methods: {
+    addItem() {
+      const newItem = prompt('введите новое значение:');
+      if (newItem) {
+        this.items.push(newItem);
+      }
+    },
+    removeItem(index) {
+      const isConfirmed = confirm(`вы точно хотите удалить  ${this.items[index]}?`);
+      if (isConfirmed) {
+        this.items.splice(index, 1);
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
+
